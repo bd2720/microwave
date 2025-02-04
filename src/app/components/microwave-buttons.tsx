@@ -5,9 +5,10 @@ interface MicrowaveButtonProps {
   onCookTimePress: () => void,
   onStartPress: () => void,
   onStopPress: () => void,
+  onTimeAddPress: () => void
 }
 
-export default function MicrowaveButtons({ onNumPress, onCookTimePress, onStartPress, onStopPress }: MicrowaveButtonProps){
+export default function MicrowaveButtons({ onNumPress, onCookTimePress, onStartPress, onStopPress, onTimeAddPress }: MicrowaveButtonProps){
   return (
     <>
     <div className="bg-zinc-800 grid grid-cols-3 rounded-sm">
@@ -29,6 +30,12 @@ export default function MicrowaveButtons({ onNumPress, onCookTimePress, onStartP
           >
             0
           </Button> 
+          <Button 
+            className=" text-sm col-start-3 hover:bg-sky-500/20 active:bg-sky-500/40"
+            onClick={onTimeAddPress}
+          >
+            Add <span className="text-nowrap">30 Sec</span>
+          </Button> 
       </div>
     </div>
     <div className="bg-zinc-800 grid grid-cols-3 rounded-sm">
@@ -39,13 +46,13 @@ export default function MicrowaveButtons({ onNumPress, onCookTimePress, onStartP
         Cook Time
       </Button>
       <Button
-        className="text-sm border-2 border-green-400/50 hover:bg-green-300/20 active:bg-green-400/40"
+        className="text-sm  border-b-2 border-green-400/50 hover:bg-green-300/20 active:bg-green-400/40 p-1"
         onClick={onStartPress}
       >
         START
       </Button>
       <Button
-        className="text-sm border-2 border-red-400/50 hover:bg-red-300/20 active:bg-red-400/40"
+        className="text-sm border-b-2 border-red-400/50 hover:bg-red-300/20 active:bg-red-400/40"
         onClick={onStopPress}
       >
         STOP

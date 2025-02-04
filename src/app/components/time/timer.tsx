@@ -1,29 +1,31 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { formatTime } from '@/app/util/util';
 
 interface TimerProps {
-  duration: number,
+  secondsLeft: number,
+  tickDown: () => void,
   onTimerEnd: () => void
 }
 
-export default function Timer({ duration, onTimerEnd }: TimerProps){
-  const [secondsLeft, setSecondsLeft] = useState(duration);
+export default function Timer({ secondsLeft, tickDown, onTimerEnd }: TimerProps){
+  const isTicking = secondsLeft > 0;
 
   useEffect(() => {
+    console.log(`Running Timer Effect... ${secondsLeft} seconds left.`);
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    if(secondsLeft <= 0){
+    if(!isTicking){
       onTimerEnd();
     } else {
-      timeoutId = setTimeout(() => {
-        setSecondsLeft(s => s - 1); // decrement seconds left
+      timeoutId = setInterval(() => {
+        tickDown(); // decrement seconds left
       }, 1000); // set another 1s timeout
     }
 
     return () => clearTimeout(timeoutId);
-  }, [secondsLeft]);
+  }, [isTicking]);
 
   return <>{(secondsLeft > 0) ? formatTime(secondsLeft) : '00:01'}</>
 }

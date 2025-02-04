@@ -5,6 +5,8 @@ import Timer from '@/app/components/time/timer';
 interface MicrowaveTimeProps {
   mode: string,
   timeInput: string,
+  secondsLeft: number,
+  tickDown: () => void,
   onCookEnd: () => void
 }
 
@@ -18,7 +20,7 @@ export default function MicrowaveTime(props: MicrowaveTimeProps){
   );
 }
 
-function MicrowaveTimeDisplay({ mode, timeInput, onCookEnd }: MicrowaveTimeProps){
+function MicrowaveTimeDisplay({ mode, timeInput, secondsLeft, tickDown, onCookEnd }: MicrowaveTimeProps){
   switch(mode){
     case 'clock': {
       return <Clock />
@@ -27,12 +29,10 @@ function MicrowaveTimeDisplay({ mode, timeInput, onCookEnd }: MicrowaveTimeProps
       return <InputDisplay timeInput={timeInput} />
     }
     case 'cook': {
-      const sec = parseInt(timeInput.slice(2));
-      const min = parseInt(timeInput.slice(0, 2));
-      console.log('timeInput:', timeInput, 'sec:', sec, 'min:', min);
       return (
         <Timer 
-          duration={min*60 + sec}
+          secondsLeft={secondsLeft}
+          tickDown={tickDown}
           onTimerEnd={onCookEnd}
         />
       )
