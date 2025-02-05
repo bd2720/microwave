@@ -5,10 +5,12 @@ import MicrowaveTime from '@/app/components/microwave-time';
 import MicrowaveButtons from '@/app/components/microwave-buttons';
 import { useState } from 'react';
 
+export type MicrowaveMode = 'clock' | 'input' | 'cook';
+
 export default function Microwave(){
-  const [mode, setMode] = useState('clock');
-  const [timeInput, setTimeInput] = useState('0000');
-  const [secondsLeft, setSecondsLeft] = useState(0);
+  const [mode, setMode] = useState<MicrowaveMode>('clock');
+  const [timeInput, setTimeInput] = useState<string>('0000');
+  const [secondsLeft, setSecondsLeft] = useState<number>(0);
 
   function handleNumPress(num: number){
     if(mode !== 'input') return;

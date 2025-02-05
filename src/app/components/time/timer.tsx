@@ -21,10 +21,10 @@ export default function Timer({ secondsLeft, tickDown, onTimerEnd }: TimerProps)
     } else {
       timeoutId = setInterval(() => {
         tickDown(); // decrement seconds left
-      }, 1000); // set another 1s timeout
+      }, 1000); // set interval every second
     }
 
-    return () => clearTimeout(timeoutId);
+    return () => clearInterval(timeoutId);
   }, [isTicking]);
 
   return <>{isTicking ? formatTime(secondsLeft) : '00:01'}</>

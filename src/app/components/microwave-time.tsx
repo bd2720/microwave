@@ -1,9 +1,10 @@
+import { type MicrowaveMode } from '@/app/components/microwave';
 import Clock from '@/app/components/time/clock';
 import InputDisplay from '@/app/components/time/input-display';
 import Timer from '@/app/components/time/timer';
 
 interface MicrowaveTimeProps {
-  mode: string,
+  mode: MicrowaveMode,
   timeInput: string,
   secondsLeft: number,
   tickDown: () => void,
