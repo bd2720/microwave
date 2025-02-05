@@ -1,9 +1,9 @@
 "use client";
 
+import MicrowaveDoor from '@/app/components/microwave-door';
 import MicrowaveTime from '@/app/components/microwave-time';
 import MicrowaveButtons from '@/app/components/microwave-buttons';
 import { useState } from 'react';
-import clsx from 'clsx';
 
 export default function Microwave(){
   const [mode, setMode] = useState('clock');
@@ -47,12 +47,12 @@ export default function Microwave(){
 
   return (
     <div className="w-[80em] h-[36em] max-w-[1280px] w-full bg-zinc-400 p-12 flex rounded-lg shadow-2xl">
-      <div className="relative w-4/5 h-full bg-zinc-900 rounded-l-lg p-8">
-        <div className="absolute top-12 right-4 h-96 w-8 z-10 rounded-md bg-gradient-to-b from-zinc-400 via-zinc-300 to-zinc-400" />
-        <div className={clsx('w-full h-full rounded-sm transition duration-200', (mode === 'cook') ? 'bg-amber-200/40' : 'bg-black/40')} />
-      </div>
+      <MicrowaveDoor 
+        isCooking={mode ==='cook'}
+        onHandlePress={handleCookEnd}
+      />
       <div className="h-full w-2 bg-black" />
-      <div className="w-1/5 h-full bg-zinc-900 rounded-r-lg flex flex-col gap-4 p-5">
+      <div className="w-60 h-full bg-zinc-900 rounded-r-lg flex flex-col gap-4 p-5 shrink-0">
         <MicrowaveTime 
           mode={mode} 
           timeInput={timeInput}

@@ -46,13 +46,13 @@ export default function MicrowaveButtons({ onNumPress, onCookTimePress, onStartP
         Cook Time
       </Button>
       <Button
-        className="text-sm  border-b-2 border-green-400/50 hover:bg-green-300/20 active:bg-green-400/40 p-1"
+        className="text-sm  border-b-4 border-green-400/50 hover:bg-green-300/20 active:bg-green-400/40 p-1"
         onClick={onStartPress}
       >
         START
       </Button>
       <Button
-        className="text-sm border-b-2 border-red-400/50 hover:bg-red-300/20 active:bg-red-400/40"
+        className="text-sm border-b-4 border-red-400/50 hover:bg-red-300/20 active:bg-red-400/40"
         onClick={onStopPress}
       >
         STOP

@@ -27,5 +27,5 @@ export default function Timer({ secondsLeft, tickDown, onTimerEnd }: TimerProps)
     return () => clearTimeout(timeoutId);
   }, [isTicking]);
 
-  return <>{(secondsLeft > 0) ? formatTime(secondsLeft) : '00:01'}</>
+  return <>{isTicking ? formatTime(secondsLeft) : '00:01'}</>
 }
