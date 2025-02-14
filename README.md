@@ -7,8 +7,8 @@ A microwave-themed timer app created with `Next.js` + `React` + `TypeScript` + `
 ## Controls
 - `Cook Time` enables entering a desired cook time `(mm:ss)`
 - `Digits (0-9)` append a digit to the desired cook time
-- `Start` starts cooking for the duration entered
-- `Stop` stops cooking or inputting cook time
+- `START` starts cooking for the duration entered
+- `STOP` stops cooking or inputting cook time
 - `Add 30 Sec` adds 30 seconds to current cook time; can be used to start cooking immediately
 - `Door Handle` stops cooking
 

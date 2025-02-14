@@ -9,8 +9,8 @@ const oxygenMono = Oxygen_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Microwave",
-  description: "Microwave in React/Next",
+  title: "Microwave Timer",
+  description: "Microwave Timer application built with React and Next.js",
 };
 
 export default function RootLayout({
