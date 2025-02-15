@@ -1,30 +1,40 @@
+import SettingsButton from '@/app/components/settings-button';
 import Image from 'next/image';
+import Link from 'next/link';
+
 export default function Header(){
   return (
-    <header className="w-full h-28 bg-zinc-300 shadow-xl">
-      <Image
-        className="hidden md:block absolute top-2 left-2 rounded-sm"
-        width={96}
-        height={96}
-        src='/bd2720-watermark.png'
-        alt='bd2720'
-      />
-      <h1 className="text-4xl text-center font-semibold p-3">
-        Microwave Timer
-      </h1>
-      <p className="text-md md:text-lg text-center text-zinc-600">
-        Press{" "}
-        <span className="text-zinc-100">
-          Cook Time,{" "}
-        </span>
-        enter a {" "}
-        <span className="text-sky-500">
-          time
-        </span> and hit{" "}
-        <span className="text-green-500">
-          START!
-        </span>
-      </p>
+    <header className="w-full h-28 bg-zinc-400/80 shadow-xl flex justify-between items-center p-2">
+      <Link href="https://bd2720.github.io/">
+        <Image
+          className="hidden md:block rounded-sm"
+          width={96}
+          height={96}
+          src='/bd2720-watermark.png'
+          alt='bd2720'
+        />
+      </Link>
+      <div>
+        <h1 className="text-2xl md:text-4xl text-center font-semibold m-1">
+          Microwave Timer
+        </h1>
+        <p className="text-sm md:text-lg text-center text-zinc-600 p-2">
+          Press{" "}
+          <span className="text-zinc-100">
+            Cook Time,{" "}
+          </span>
+          enter a {" "}
+          <span className="text-sky-500">
+            time
+          </span> and hit{" "}
+          <span className="text-green-600">
+            START!
+          </span>
+        </p>
+      </div>
+      <div className="size-24 flex justify-center items-center">
+        <SettingsButton />
+      </div>
     </header>
   );
 }
