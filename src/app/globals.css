@@ -11,4 +11,5 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--oxygen-mono), monospace;
+  position: relative;
 }

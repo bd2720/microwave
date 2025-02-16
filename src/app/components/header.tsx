@@ -1,4 +1,4 @@
-import SettingsButton from '@/app/components/settings-button';
+import Settings from '@/app/components/settings';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,7 +7,7 @@ export default function Header(){
     <header className="w-full h-28 bg-zinc-400/80 shadow-xl flex justify-between items-center p-2">
       <Link href="https://bd2720.github.io/">
         <Image
-          className="hidden md:block rounded-sm"
+          className="hidden md:block rounded-sm ring-zinc-400 hover:ring-2"
           width={96}
           height={96}
           src='/bd2720-watermark.png'
@@ -33,7 +33,7 @@ export default function Header(){
         </p>
       </div>
       <div className="size-24 flex justify-center items-center">
-        <SettingsButton />
+        <Settings />
       </div>
     </header>
   );
