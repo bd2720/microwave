@@ -2,9 +2,13 @@
 
 import { useState } from 'react';
 import { Settings as SettingsIcon, X } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import ButtonSetting from '@/app/components/button-setting';
 
 export default function Settings(){
   const [isOpen, setIsOpen] = useState(false);
+  const {theme, setTheme} = useTheme();
+  const isDarkMode = theme === 'dark';
 
   return (
     <>
@@ -19,11 +23,24 @@ export default function Settings(){
       </button>
       {isOpen && (
         <div className="absolute top-0 left-0 bottom-0 right-0 bg-zinc-800/50 flex justify-center items-center z-20">
-          <div className="w-96 bg-zinc-300 rounded-lg shadow-lg border-2 border-zinc-200 p-1 flex justify-between">
-            <h2 className="text-xl font-semibold text-black text-center">SETTINGS</h2>
-            <button onClick={() => setIsOpen(false)}>
+          <div className="relative w-96 bg-zinc-900 rounded-lg shadow-lg border-4 border-zinc-400 p-1">
+            <h2 className="text-2xl font-semibold text-sky-500 bg-zinc-800 rounded-sm text-center">
+              SETTINGS
+            </h2>
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="absolute top-2 right-2 text-zinc-600 hover:bg-zinc-400/60 rounded-sm size-6"
+            >
               <X />
             </button>
+            <div className="p-4">
+              {/* THEME SETTING */}
+              <ButtonSetting
+                buttonText="Toggle Theme"
+                displayText={`${isDarkMode ? 'DARK' : 'LIGHT'} MODE ON`}
+                onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
+              />
+            </div>
           </div>
         </div>
       )}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Oxygen_Mono } from "next/font/google";
+import { ThemeProvider } from 'next-themes';
 import "./globals.css";
 
 const oxygenMono = Oxygen_Mono({
@@ -19,11 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${oxygenMono.variable} antialiased`}
+        className={`${oxygenMono.variable} antialiased bg-zinc-100 dark:bg-zinc-900`}
       >
-        {children}
+        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
