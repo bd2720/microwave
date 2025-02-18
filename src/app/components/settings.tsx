@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Settings as SettingsIcon, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import ButtonSetting from '@/app/components/button-setting';
+import Numpad from '@/app/components/ui/numpad';
 
 export default function Settings(){
   const [isOpen, setIsOpen] = useState(false);
