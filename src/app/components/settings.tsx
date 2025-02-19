@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { Settings as SettingsIcon, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import ButtonSetting from '@/app/components/button-setting';
-import Numpad from '@/app/components/ui/numpad';
+import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 
 export default function Settings(){
   const [isOpen, setIsOpen] = useState(false);
   const {theme, setTheme} = useTheme();
   const isDarkMode = theme === 'dark';
+
+  const {isAudible, setIsAudible} = useSoundSettings();
 
   return (
     <>
@@ -40,6 +42,11 @@ export default function Settings(){
                 buttonText="Toggle Theme"
                 displayText={`${isDarkMode ? 'DARK' : 'LIGHT'} MODE ON`}
                 onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
+              />
+              <ButtonSetting
+                buttonText="Toggle Sound"
+                displayText={`SOUND ${isAudible ? 'ON' : 'OFF'}`}
+                onClick={() => setIsAudible(currentIsAudible => !currentIsAudible)}
               />
             </div>
           </div>

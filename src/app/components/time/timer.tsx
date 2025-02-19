@@ -13,7 +13,7 @@ export default function Timer({ secondsLeft, tickDown, onTimerEnd }: TimerProps)
   const isTicking = secondsLeft > 0;
 
   useEffect(() => {
-    console.log(`Running Timer Effect... ${secondsLeft} seconds left.`);
+    console.log(`Updating Timer... ${secondsLeft} seconds left.`);
     let timeoutId: ReturnType<typeof setTimeout>;
 
     if(!isTicking){

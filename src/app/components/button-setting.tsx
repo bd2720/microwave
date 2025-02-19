@@ -8,9 +8,7 @@ interface ButtonSettingProps {
 
 export default function ButtonSetting({ buttonText, displayText, onClick}: ButtonSettingProps){
   return (
-    <div 
-      className="w-full flex justify-between"
-    >
+    <div className="w-full flex justify-between">
       <Button 
         className="size-16 text-sm bg-zinc-800 hover:bg-sky-500/20 active:bg-sky-500/40"
         onClick={onClick}
