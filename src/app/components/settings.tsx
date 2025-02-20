@@ -46,7 +46,7 @@ export default function Settings(){
               <ButtonSetting
                 buttonText="Toggle Sound"
                 displayText={`SOUND ${isAudible ? 'ON' : 'OFF'}`}
-                onClick={() => setIsAudible(currentIsAudible => !currentIsAudible)}
+                onClick={() => setIsAudible(!isAudible)}
               />
             </div>
           </div>

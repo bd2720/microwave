@@ -1,5 +1,5 @@
 /* Sound settings */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export const useSoundSettings = () => {
   const [isAudible, setIsAudible] = useState(false);
