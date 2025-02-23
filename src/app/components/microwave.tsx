@@ -3,9 +3,8 @@
 import MicrowaveDoor from '@/app/components/microwave-door';
 import MicrowaveTime from '@/app/components/microwave-time';
 import MicrowaveButtons from '@/app/components/microwave-buttons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSoundHum } from '@/app/hooks/useSoundHum';
-import { Synth } from 'tone';
 
 export type MicrowaveMode = 'clock' | 'input' | 'cook';
 
@@ -15,6 +14,8 @@ export default function Microwave(){
   const [secondsLeft, setSecondsLeft] = useState<number>(0);
 
   const isCooking = (mode === 'cook');
+
+  const { beginHum, endHum } = useSoundHum();
 
   function handleNumPress(num: number){
     if(mode !== 'input') return;
@@ -33,13 +34,17 @@ export default function Microwave(){
     const seconds = parseInt(timeInput.slice(2));
     const minutes = parseInt(timeInput.slice(0, 2));
     if(seconds >= 60 || timeInput === '0000') return;
+    const totalSeconds = minutes * 60 + seconds;
     setMode('cook');
-    setSecondsLeft(minutes * 60 + seconds);
+    setSecondsLeft(totalSeconds);
+    // begin microwave hum
+    beginHum();
   }
 
   function handleCookEnd(){
     setMode('clock');
     setTimeInput('0000');
+    endHum();
   }
 
   function handleTimeAdd(){
@@ -48,18 +53,9 @@ export default function Microwave(){
       setSecondsLeft(s => s + 30);
     } else {
       setSecondsLeft(30);
+      beginHum();
     }
   }
-
-  const { beginHum, endHum } = useSoundHum();
-
-  useEffect(() => {
-    if(isCooking){
-      beginHum();
-    } else {
-      endHum();
-    }
-  }, [isCooking]);
 
   return (
     <div className="w-[80em] h-[36em] max-w-[1280px] w-full bg-zinc-400 p-12 flex rounded-lg shadow-2xl">
