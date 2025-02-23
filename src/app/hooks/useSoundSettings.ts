@@ -1,8 +1,7 @@
 /* Sound settings */
-import { useState } from 'react';
+import { useContext } from 'react';
+import { SoundSettingsContext } from '@/app/contexts/soundSettingsContext';
 
 export const useSoundSettings = () => {
-  const [isAudible, setIsAudible] = useState(false);
-
-  return {isAudible, setIsAudible}
+  return useContext(SoundSettingsContext);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oxygen_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
+import SoundSettingsProvider from "./components/sound-settings-provider";
 import "./globals.css";
 
 const oxygenMono = Oxygen_Mono({
@@ -25,7 +26,9 @@ export default function RootLayout({
         className={`${oxygenMono.variable} antialiased bg-zinc-100 dark:bg-zinc-900`}
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-          {children}
+          <SoundSettingsProvider>
+            {children}
+          </SoundSettingsProvider>
         </ThemeProvider>
       </body>
     </html>

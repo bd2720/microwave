@@ -16,7 +16,7 @@ export default function Settings(){
   return (
     <>
       <button 
-        className="size-12 bg-zinc-300 rounded-lg shadow-inner ring-zinc-400 hover:ring-2 active:shadow-zinc-400 flex justify-center items-center group"
+        className="size-12 bg-zinc-300 rounded-lg shadow-inner ring-zinc-500 dark:ring-zinc-400 hover:ring-2 active:shadow-zinc-400 flex justify-center items-center group"
         onClick={() => setIsOpen(true)}
       >
         <SettingsIcon 
