@@ -5,9 +5,10 @@ import { useEffect, useRef } from 'react';
 export const useSoundHum = () => {
 
   const { isAudible } = useSoundSettings();
-  const vol = (isAudible) ? -18 : -9999;
-
+  // ref object to persist the Synth instance
   const humRef = useRef<Tone.Synth>(null);
+  // volume (-db) based on isAudible
+  const vol = (isAudible) ? -18 : -9999;
 
   // function to begin hum
   const beginHum = () => {
@@ -26,6 +27,7 @@ export const useSoundHum = () => {
     humRef.current.triggerRelease();
   }
 
+  // update Synth's volume whenever it changes
   useEffect(() => {
     if(humRef.current){
       humRef.current.volume.value = vol;
