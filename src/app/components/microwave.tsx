@@ -5,6 +5,7 @@ import MicrowaveTime from '@/app/components/microwave-time';
 import MicrowaveButtons from '@/app/components/microwave-buttons';
 import { useState } from 'react';
 import { useSoundHum } from '@/app/hooks/useSoundHum';
+import { useSoundTimer } from '@/app/hooks/useSoundTimer';
 
 export type MicrowaveMode = 'clock' | 'input' | 'cook';
 
@@ -16,6 +17,7 @@ export default function Microwave(){
   const isCooking = (mode === 'cook');
 
   const { beginHum, endHum } = useSoundHum();
+  const beeper = useSoundTimer();
 
   function handleNumPress(num: number){
     if(mode !== 'input') return;
@@ -27,6 +29,7 @@ export default function Microwave(){
   function handleCookTimePress(){
     setMode('input'); // set input mode
     setTimeInput('0000'); // reset input
+    if(mode === 'cook') endHum(); // stop hum if necessary
   }
 
   function handleStartPress(){
@@ -70,7 +73,10 @@ export default function Microwave(){
           timeInput={timeInput}
           secondsLeft={secondsLeft}
           tickDown={() => setSecondsLeft(s => s - 1)}
-          onCookEnd={handleCookEnd}
+          onCookEnd={() => {
+            beeper(); // play beeper when cooking completes
+            handleCookEnd();
+          }}
         />
         <MicrowaveButtons 
           onNumPress={handleNumPress}

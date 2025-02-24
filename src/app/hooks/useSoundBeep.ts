@@ -11,16 +11,19 @@ export const useSoundBeep = () => {
   const vol = (isAudible) ? -18 : -9999;
 
   // function to play beep
-  const beep = (isHigh: boolean = false) => {
+  const beep = (note: Tone.Unit.Frequency = 'D#5') => {
     if(!beepRef.current){
-      const beep = new Tone.Synth().toDestination();
+      const beep = new Tone.Synth({
+        volume: vol,
+        envelope: {
+          attack: 0.005,
+          sustain: 0.5,
+          release: 0.1
+        }
+      }).toDestination();
       beep.volume.value = vol;
-      beep.envelope.release = 0.15;
-      beep.envelope.attack = 0.005;
-      beep.envelope.sustain = 0.5;
       beepRef.current = beep;
     }
-    const note = (isHigh) ? 'G#5' : 'D#5';
     beepRef.current.triggerAttackRelease(note, '16n');
   }
 
