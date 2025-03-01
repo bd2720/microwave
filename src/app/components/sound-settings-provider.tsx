@@ -7,12 +7,15 @@ import { volumeToGain } from "@/app/utils/sound";
 
 interface SoundSettingsProviderProps extends PropsWithChildren {
   defaultVolumeLevel?: number
+  defaultHumEnabled?: boolean
 }
 
-export default function SoundSettingsProvider({defaultVolumeLevel = 0, children}: SoundSettingsProviderProps){
+export default function SoundSettingsProvider({defaultVolumeLevel = 0, defaultHumEnabled = true, children}: SoundSettingsProviderProps){
   const [volumeLevel, setVolumeLevel] = useState(defaultVolumeLevel);
-  const isAudible = volumeLevel > 0;
+  const [humEnabled, setHumEnabled] = useState(defaultHumEnabled);
+
   // effect to start Tone when isAudible
+  const isAudible = volumeLevel > 0;
   useEffect(() => {
     if(isAudible && Tone.getContext().state !== 'running'){
       Tone.start().then(() => {
@@ -25,7 +28,7 @@ export default function SoundSettingsProvider({defaultVolumeLevel = 0, children}
   const gainLevel = volumeToGain(volumeLevel);
   
   return (
-    <SoundSettingsContext.Provider value={{volumeLevel, setVolumeLevel, gainLevel}}>
+    <SoundSettingsContext.Provider value={{volumeLevel, setVolumeLevel, humEnabled, setHumEnabled, gainLevel}}>
       {children}
     </SoundSettingsContext.Provider>
   );

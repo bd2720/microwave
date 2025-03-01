@@ -1,14 +1,11 @@
-"use client";
-
 import Numpad from '@/app/components/ui/numpad';
-import { useState } from 'react';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
+import Button from '@/app/components/ui/button';
 
 export default function SoundSetting(){
   const {volumeLevel, setVolumeLevel} = useSoundSettings();
 
-  const volumeDisplayStr = `${volumeLevel}`.padStart(2, '0')
-  const volumeInput = useState(volumeDisplayStr);
+  const volumeDisplayStr = `${volumeLevel}`.padStart(2, '0');
   
   function handleNumPress(num: number){
     // keep volume between 0 and 99
@@ -24,7 +21,22 @@ export default function SoundSetting(){
       <Numpad
         className="w-52"
         onNumPress={handleNumPress}
-      />
+      > 
+        <div className="col-span-3 grid grid-cols-subgrid">
+          <Button 
+            className="text-sm hover:bg-sky-500/20 active:bg-sky-500/40"
+            onClick={() => setVolumeLevel(0)}
+          >
+            Mute
+          </Button>
+          <Button 
+            className="hover:bg-sky-500/20 active:bg-sky-500/40"
+            onClick={() => handleNumPress(0)}
+          >
+            0
+          </Button> 
+        </div>
+      </Numpad>
     </div>
   )
 }

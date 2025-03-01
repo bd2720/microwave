@@ -17,7 +17,7 @@ export default function Microwave(){
   const isCooking = (mode === 'cook');
 
   const { beginHum, endHum } = useSoundHum();
-  const beeper = useSoundTimer();
+  const playBeeper = useSoundTimer();
 
   function handleNumPress(num: number){
     if(mode !== 'input') return;
@@ -74,7 +74,7 @@ export default function Microwave(){
           secondsLeft={secondsLeft}
           tickDown={() => setSecondsLeft(s => s - 1)}
           onCookEnd={() => {
-            beeper(); // play beeper when cooking completes
+            playBeeper(); // play beeper when cooking completes
             handleCookEnd();
           }}
         />

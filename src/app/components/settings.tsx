@@ -5,11 +5,14 @@ import { Settings as SettingsIcon, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import ButtonSetting from '@/app/components/button-setting';
 import SoundSetting from '@/app/components/sound-setting';
+import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 
 export default function Settings(){
   const [isOpen, setIsOpen] = useState(false);
   const {theme, setTheme} = useTheme();
   const isDarkMode = theme === 'dark';
+
+  const {humEnabled, setHumEnabled} = useSoundSettings();
 
   return (
     <>
@@ -42,6 +45,11 @@ export default function Settings(){
                 onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
               />
               { /* SOUND SETTINGS */}
+              <ButtonSetting
+                buttonText="Toggle Hum"
+                displayText={`HUM ${humEnabled ? 'ON' : 'OFF'}`}
+                onClick={() => setHumEnabled(!humEnabled)}
+              />
               <SoundSetting />
             </div>
           </div>

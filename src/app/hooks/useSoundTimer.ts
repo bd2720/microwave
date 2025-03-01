@@ -9,7 +9,7 @@ export const useSoundTimer = () => {
   const beeperRef = useRef<Tone.Synth>(null);
 
   // function to play beeper
-  const beeper = () => {
+  const playBeeper = () => {
     if(!beeperRef.current){
       const beeper = new Tone.Synth({
         volume: gainLevel,
@@ -36,5 +36,5 @@ export const useSoundTimer = () => {
     }
   }, [gainLevel])
 
-  return beeper;
+  return playBeeper;
 }
