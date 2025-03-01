@@ -1,5 +1,5 @@
 import * as Tone from 'tone';
-import { useSoundSettings } from './useSoundSettings';
+import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 import { useEffect, useRef } from 'react';
 
 export const useSoundHum = () => {

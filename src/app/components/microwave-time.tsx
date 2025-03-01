@@ -21,7 +21,10 @@ interface MicrowaveTimeProps {
 export default function MicrowaveTime({ mode, timeInput, secondsLeft, tickDown, onCookEnd }: MicrowaveTimeProps){
   return (
     <div className="relative bg-zinc-800 p-2 overflow-hidden h-16 flex justify-center items-center rounded-sm">
-      <p className="text-lg text-sky-400 text-center text-nowrap">
+      <p 
+        className="text-lg text-sky-400 text-center text-nowrap"
+        suppressHydrationWarning={mode === 'clock'}
+      >
         {
           (mode === 'clock') ? 
             <Clock /> :
