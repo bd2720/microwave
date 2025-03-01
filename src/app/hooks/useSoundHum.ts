@@ -3,18 +3,16 @@ import { useSoundSettings } from './useSoundSettings';
 import { useEffect, useRef } from 'react';
 
 export const useSoundHum = () => {
-
-  const { isAudible } = useSoundSettings();
+  // extract gain level from sound settings
+  const { gainLevel } = useSoundSettings();
   // ref object to persist the Synth instance
   const humRef = useRef<Tone.Synth>(null);
-  // volume (-db) based on isAudible
-  const vol = (isAudible) ? -18 : -9999;
 
   // function to begin hum
   const beginHum = () => {
     if(!humRef.current){
       const hum = new Tone.Synth().toDestination();
-      hum.volume.value = vol;
+      hum.volume.value = gainLevel;
       hum.envelope.release = 2;
       humRef.current = hum;
     }
@@ -30,9 +28,9 @@ export const useSoundHum = () => {
   // update Synth's volume whenever it changes
   useEffect(() => {
     if(humRef.current){
-      humRef.current.volume.value = vol;
+      humRef.current.volume.value = gainLevel;
     }
-  }, [vol])
+  }, [gainLevel])
 
   return { beginHum, endHum };
 }

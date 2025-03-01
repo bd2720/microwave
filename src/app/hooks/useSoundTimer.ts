@@ -3,18 +3,16 @@ import { useSoundSettings } from './useSoundSettings';
 import { useEffect, useRef } from 'react';
 
 export const useSoundTimer = () => {
+  // extract gain level from sound settings
+  const { gainLevel } = useSoundSettings();
   // ref object to persist the Synth instance
   const beeperRef = useRef<Tone.Synth>(null);
-
-  const { isAudible } = useSoundSettings();
-  // volume (-db) based on isAudible
-  const vol = (isAudible) ? -18 : -9999;
 
   // function to play beeper
   const beeper = () => {
     if(!beeperRef.current){
       const beeper = new Tone.Synth({
-        volume: vol,
+        volume: gainLevel,
         envelope: {
           release: 0.1
         }
@@ -34,9 +32,9 @@ export const useSoundTimer = () => {
   // update Synth's volume whenever it changes
   useEffect(() => {
     if(beeperRef.current){
-      beeperRef.current.volume.value = vol;
+      beeperRef.current.volume.value = gainLevel;
     }
-  }, [vol])
+  }, [gainLevel])
 
   return beeper;
 }

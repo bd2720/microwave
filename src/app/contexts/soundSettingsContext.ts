@@ -1,6 +1,8 @@
 import { createContext } from 'react';
+import { volumeToGain } from '@/app/utils/sound';
 
 export const SoundSettingsContext = createContext({
-  isAudible: false,
-  setIsAudible: (newIsAudible: boolean) => {}
+  volumeLevel: 0,
+  setVolumeLevel: (newVolumeLevel: number) => {},
+  gainLevel: volumeToGain(0) // depends on volumeLevel
 });

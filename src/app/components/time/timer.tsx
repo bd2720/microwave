@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { formatTime } from '@/app/util/util';
+import { formatTime } from '@/app/utils/time';
 
 interface TimerProps {
   secondsLeft: number,
