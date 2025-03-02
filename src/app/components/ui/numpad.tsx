@@ -4,10 +4,11 @@ import clsx from 'clsx';
 
 interface NumpadProps extends PropsWithChildren {
   className?: string,
-  onNumPress: (num: number) => void
+  onNumPress: (num: number) => void,
+  disabled?: boolean
 }
 
-export default function Numpad({ className, onNumPress, children }: NumpadProps){
+export default function Numpad({ className, onNumPress, disabled = false, children }: NumpadProps){
   return (
     <>
       <div className={clsx("bg-zinc-800 grid grid-cols-3 rounded-sm", className)}>
@@ -15,8 +16,8 @@ export default function Numpad({ className, onNumPress, children }: NumpadProps)
           return (
             <Button 
               key={n+1}
-              className="hover:bg-sky-500/20 active:bg-sky-500/40"
               onClick={() => onNumPress(n+1)}
+              disabled={disabled}
             >
               {n+1}
             </Button>
@@ -25,8 +26,9 @@ export default function Numpad({ className, onNumPress, children }: NumpadProps)
         {children || (
           <div className="col-span-3 grid grid-cols-subgrid">
             <Button 
-              className="col-start-2 hover:bg-sky-500/20 active:bg-sky-500/40"
+              className="col-start-2"
               onClick={() => onNumPress(0)}
+              disabled={disabled}
             >
               0
             </Button> 

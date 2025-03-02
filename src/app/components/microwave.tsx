@@ -78,7 +78,8 @@ export default function Microwave(){
             handleCookEnd();
           }}
         />
-        <MicrowaveButtons 
+        <MicrowaveButtons
+          mode={mode}
           onNumPress={handleNumPress}
           onCookTimePress={handleCookTimePress}
           onStartPress={handleStartPress}

@@ -10,7 +10,7 @@ export default function ButtonSetting({ buttonText, displayText, onClick}: Butto
   return (
     <div className="w-full flex justify-between">
       <Button 
-        className="size-16 text-sm bg-zinc-800 hover:bg-sky-500/20 active:bg-sky-500/40"
+        className="size-16 text-sm bg-zinc-800"
         onClick={onClick}
       >
         {buttonText}

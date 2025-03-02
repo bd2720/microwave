@@ -24,15 +24,12 @@ export default function SoundSetting(){
       > 
         <div className="col-span-3 grid grid-cols-subgrid">
           <Button 
-            className="text-sm hover:bg-sky-500/20 active:bg-sky-500/40"
+            className="text-sm"
             onClick={() => setVolumeLevel(0)}
           >
             Mute
           </Button>
-          <Button 
-            className="hover:bg-sky-500/20 active:bg-sky-500/40"
-            onClick={() => handleNumPress(0)}
-          >
+          <Button onClick={() => handleNumPress(0)}>
             0
           </Button> 
         </div>
