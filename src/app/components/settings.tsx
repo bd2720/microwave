@@ -1,17 +1,14 @@
 "use client";
 
 import { useState } from 'react';
-import { Settings as SettingsIcon, X } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import ButtonSetting from '@/app/components/button-setting';
-import SoundSetting from '@/app/components/sound-setting';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
+import { Settings as SettingsIcon, X } from 'lucide-react';
+import ButtonSetting from '@/app/components/button-setting';
+import ThemeSetting from '@/app/components/theme-setting';
+import SoundSetting from '@/app/components/sound-setting';
 
 export default function Settings(){
   const [isOpen, setIsOpen] = useState(false);
-  const {theme, setTheme} = useTheme();
-  const isDarkMode = theme === 'dark';
-
   const {humEnabled, setHumEnabled} = useSoundSettings();
 
   return (
@@ -39,11 +36,7 @@ export default function Settings(){
             </button>
             <div className="p-4">
               {/* THEME SETTING */}
-              <ButtonSetting
-                buttonText="Toggle Theme"
-                displayText={`${isDarkMode ? 'DARK' : 'LIGHT'} MODE ON`}
-                onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
-              />
+              <ThemeSetting />
               { /* SOUND SETTINGS */}
               <ButtonSetting
                 buttonText="Toggle Hum"
