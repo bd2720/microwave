@@ -4,6 +4,7 @@ import Numpad from '@/app/components/ui/numpad';
 
 interface MicrowaveButtonProps {
   mode: MicrowaveMode,
+  isValidTime: boolean,
   onNumPress: (num: number) => void,
   onCookTimePress: () => void,
   onStartPress: () => void,
@@ -11,7 +12,7 @@ interface MicrowaveButtonProps {
   onTimeAddPress: () => void
 }
 
-export default function MicrowaveButtons({ mode, onNumPress, onCookTimePress, onStartPress, onStopPress, onTimeAddPress }: MicrowaveButtonProps){
+export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCookTimePress, onStartPress, onStopPress, onTimeAddPress }: MicrowaveButtonProps){
   return (
     <>
       <Numpad onNumPress={onNumPress} disabled={mode !== 'input'}>
@@ -40,15 +41,16 @@ export default function MicrowaveButtons({ mode, onNumPress, onCookTimePress, on
         </Button>
         <Button
           className="text-sm border-b-4 border-green-400/50 p-1"
-          hoverClassName="hover:bg-green-300/20 active:bg-green-400/40"
+          hoverClassName="enabled:hover:bg-green-300/20 enabled:active:bg-green-400/40"
           onClick={onStartPress}
           beepNote="G#5"
+          disabled={!isValidTime}
         >
           START
         </Button>
         <Button
           className="text-sm border-b-4 border-red-400/50"
-          hoverClassName="hover:bg-red-300/20 active:bg-red-400/40"
+          hoverClassName="enabled:hover:bg-red-300/20 enabled:active:bg-red-400/40"
           onClick={onStopPress}
           beepNote="G#4"
         >

@@ -16,6 +16,12 @@ export default function Microwave(){
 
   const isCooking = (mode === 'cook');
 
+  // parse timeInput into seconds, minutes
+  const seconds = parseInt(timeInput.slice(2));
+  const minutes = parseInt(timeInput.slice(0, 2));
+  const totalSeconds = minutes * 60 + seconds;
+  const isValidTime = (seconds < 60) && (totalSeconds > 0);
+
   const { beginHum, endHum } = useSoundHum();
   const playBeeper = useSoundTimer();
 
@@ -33,20 +39,15 @@ export default function Microwave(){
   }
 
   function handleStartPress(){
-    // parse timeInput into seconds, minutes
-    const seconds = parseInt(timeInput.slice(2));
-    const minutes = parseInt(timeInput.slice(0, 2));
-    if(seconds >= 60 || timeInput === '0000') return;
-    const totalSeconds = minutes * 60 + seconds;
+    if(!isValidTime) return;
     setMode('cook');
     setSecondsLeft(totalSeconds);
-    // begin microwave hum
-    beginHum();
+    beginHum(); // begin microwave hum
   }
 
   function handleCookEnd(){
     setMode('clock');
-    setTimeInput('0000');
+    // do not reset timeInput here, so START may remember the previous timer
     endHum();
   }
 
@@ -71,6 +72,7 @@ export default function Microwave(){
         <MicrowaveTime 
           mode={mode} 
           timeInput={timeInput}
+          isValidTime={isValidTime}
           secondsLeft={secondsLeft}
           tickDown={() => setSecondsLeft(s => s - 1)}
           onCookEnd={() => {
@@ -80,6 +82,7 @@ export default function Microwave(){
         />
         <MicrowaveButtons
           mode={mode}
+          isValidTime={isValidTime}
           onNumPress={handleNumPress}
           onCookTimePress={handleCookTimePress}
           onStartPress={handleStartPress}
