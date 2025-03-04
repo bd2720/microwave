@@ -17,10 +17,10 @@ interface MicrowaveTimeProps {
   isValidTime: boolean,
   secondsLeft: number,
   tickDown: () => void,
-  onCookEnd: () => void
+  onTimerEnd: () => void
 }
 
-export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLeft, tickDown, onCookEnd }: MicrowaveTimeProps){
+export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLeft, tickDown, onTimerEnd }: MicrowaveTimeProps){
   const showInputInvalid = (mode === 'input' && !isValidTime && timeInput !== '0000');
 
   return (
@@ -38,7 +38,7 @@ export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLef
             <Timer 
               secondsLeft={secondsLeft}
               tickDown={tickDown}
-              onTimerEnd={onCookEnd}
+              onTimerEnd={onTimerEnd}
             /> :
           <p className="text-red-500">ERROR</p>
         }

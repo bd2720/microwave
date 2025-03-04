@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { formatTime } from '@/app/utils/time';
 
 interface TimerProps {
@@ -11,16 +11,20 @@ interface TimerProps {
 
 export default function Timer({ secondsLeft, tickDown, onTimerEnd }: TimerProps){
   const isTicking = secondsLeft > 0;
+  
+  // save functions, to avoid specifying as dependencies
+  const tickDownRef = useRef(tickDown);
+  const onTimerEndRef = useRef(onTimerEnd);
 
   useEffect(() => {
-    console.log(`Updating Timer... ${secondsLeft} seconds left.`);
+    console.log(`${isTicking ? 'Starting' : 'Ending'} Timer.`);
     let timeoutId: ReturnType<typeof setTimeout>;
 
     if(!isTicking){
-      onTimerEnd();
+      onTimerEndRef.current();
     } else {
       timeoutId = setInterval(() => {
-        tickDown(); // decrement seconds left
+        tickDownRef.current(); // decrement seconds left
       }, 1000); // set interval every second
     }
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Oxygen_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
-import SoundSettingsProvider from "./components/sound-settings-provider";
+import SoundSettingsProvider from "@/app/components/sound-settings-provider";
 import "./globals.css";
 
 const oxygenMono = Oxygen_Mono({
@@ -13,6 +13,9 @@ const oxygenMono = Oxygen_Mono({
 export const metadata: Metadata = {
   title: "Microwave Timer",
   description: "Microwave Timer application built with React and Next.js",
+  icons: {
+    icon: '/microwave/favicon.ico'
+  }
 };
 
 export default function RootLayout({

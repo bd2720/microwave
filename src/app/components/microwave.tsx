@@ -75,7 +75,7 @@ export default function Microwave(){
           isValidTime={isValidTime}
           secondsLeft={secondsLeft}
           tickDown={() => setSecondsLeft(s => s - 1)}
-          onCookEnd={() => {
+          onTimerEnd={() => {
             playBeeper(); // play beeper when cooking completes
             handleCookEnd();
           }}
