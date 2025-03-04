@@ -13,9 +13,6 @@ const oxygenMono = Oxygen_Mono({
 export const metadata: Metadata = {
   title: "Microwave Timer",
   description: "Microwave Timer application built with React and Next.js",
-  icons: {
-    icon: '/microwave/favicon.ico'
-  }
 };
 
 export default function RootLayout({

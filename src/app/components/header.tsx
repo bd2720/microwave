@@ -11,7 +11,7 @@ export default function Header(){
             className="rounded-md hover:ring-2 ring-zinc-500 dark:ring-zinc-400 size-12 bg-zinc-400"
             width={96}
             height={96}
-            src='/microwave/bd2720-watermark-96.png'
+            src='bd2720-watermark-96.png'
             alt='bd2720'
           />
         </Link>

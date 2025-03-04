@@ -2,7 +2,7 @@ import * as Tone from 'tone';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 import { useRef, useEffect } from 'react';
 
-const doorSample = "/microwave/microwave-door-open-90798.mp3";
+const doorSample = "microwave-door-open-90798.mp3";
 
 export const useSoundDoor = () => {
   // ref for Tone sample player

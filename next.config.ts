@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
 
+const repoName = '/microwave/';
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
-  // for gh-pages deployment
+  reactStrictMode: true,
   output: "export",
-  basePath: "/microwave",
+  assetPrefix: isProd ? repoName : '',
+  basePath: isProd ? repoName : '',
   trailingSlash: true,
   images: {
     unoptimized: true,
