@@ -8,7 +8,7 @@ export default function Header(){
       <div className="size-24 flex justify-center items-center">
         <Link href="https://bd2720.github.io/" className="shrink-0">
           <Image
-            className="rounded-md hover:ring-2 ring-zinc-500 dark:ring-zinc-400 size-12 bg-zinc-400"
+            className="rounded-md hover:ring-2 ring-zinc-500 dark:ring-zinc-400 size-12 bg-zinc-400 text-zinc-500"
             width={96}
             height={96}
             src='bd2720-watermark-96.png'

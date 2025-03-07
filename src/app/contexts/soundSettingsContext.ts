@@ -3,9 +3,9 @@ import { volumeToGain } from '@/app/utils/sound';
 
 interface SoundSettingsContextType {
   volumeLevel: number
-  setVolumeLevel: Dispatch<SetStateAction<number>>
+  setVolumeLevel: (vol: number) => void
   humEnabled: boolean
-  setHumEnabled: Dispatch<SetStateAction<boolean>>
+  setHumEnabled: (hum: boolean) => void
   gainLevel: number
 }
 

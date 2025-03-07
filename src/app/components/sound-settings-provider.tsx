@@ -11,8 +11,26 @@ interface SoundSettingsProviderProps extends PropsWithChildren {
 }
 
 export default function SoundSettingsProvider({defaultVolumeLevel = 0, defaultHumEnabled = true, children}: SoundSettingsProviderProps){
-  const [volumeLevel, setVolumeLevel] = useState(defaultVolumeLevel);
-  const [humEnabled, setHumEnabled] = useState(defaultHumEnabled);
+  const [volumeLevel, setVolume] = useState(defaultVolumeLevel);
+  const [humEnabled, setHum] = useState(defaultHumEnabled);
+
+  // wrap useState setters with localstorage save
+  const setVolumeLevel = (vol: number) => {
+    localStorage.setItem('volumeLevel', `${vol}`);
+    setVolume(vol);
+  }
+  const setHumEnabled = (hum: boolean) => {
+    localStorage.setItem('humEnabled', `${hum}`);
+    setHum(hum);
+  }
+
+  // extract settings from local storage
+  useEffect(() => {
+    const localVolumeLevel = localStorage.getItem('volumeLevel');
+    const localHumEnabled = localStorage.getItem('humEnabled');
+    if(localVolumeLevel !== null) setVolumeLevel(parseInt(localVolumeLevel));
+    if(localHumEnabled !== null) setHumEnabled(localHumEnabled === "true");
+  }, []);
 
   // effect to start Tone when isAudible
   const isAudible = volumeLevel > 0;
