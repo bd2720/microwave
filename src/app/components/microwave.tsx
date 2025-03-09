@@ -13,6 +13,7 @@ export default function Microwave(){
   const [mode, setMode] = useState<MicrowaveMode>('clock');
   const [timeInput, setTimeInput] = useState<string>('0000');
   const [secondsLeft, setSecondsLeft] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const isCooking = (mode === 'cook');
 
@@ -35,7 +36,10 @@ export default function Microwave(){
   function handleCookTimePress(){
     setMode('input'); // set input mode
     setTimeInput('0000'); // reset input
-    if(mode === 'cook') endHum(); // stop hum if necessary
+    if(isCooking){
+      setIsPaused(false);
+      endHum(); // stop hum if necessary
+    }
   }
 
   function handleStartPress(){
@@ -45,8 +49,16 @@ export default function Microwave(){
     beginHum(); // begin microwave hum
   }
 
+  function handlePausePress(){
+    if(!isCooking) return;
+    setIsPaused(paused => !paused);
+    // control hum depending on previous isPaused
+    isPaused ? beginHum() : endHum();
+  }
+
   function handleCookEnd(){
     setMode('clock');
+    setIsPaused(false);
     // do not reset timeInput here, so START may remember the previous timer
     endHum();
   }
@@ -74,6 +86,7 @@ export default function Microwave(){
           timeInput={timeInput}
           isValidTime={isValidTime}
           secondsLeft={secondsLeft}
+          isPaused={isPaused}
           tickDown={() => setSecondsLeft(s => s - 1)}
           onTimerEnd={() => {
             playBeeper(); // play beeper when cooking completes
@@ -86,6 +99,7 @@ export default function Microwave(){
           onNumPress={handleNumPress}
           onCookTimePress={handleCookTimePress}
           onStartPress={handleStartPress}
+          onPausePress={handlePausePress}
           onStopPress={handleCookEnd}
           onTimeAddPress={handleTimeAdd}
         />

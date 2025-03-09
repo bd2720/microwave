@@ -3,20 +3,27 @@ import Button from '@/app/components/ui/button';
 import Numpad from '@/app/components/ui/numpad';
 
 interface MicrowaveButtonProps {
-  mode: MicrowaveMode,
-  isValidTime: boolean,
-  onNumPress: (num: number) => void,
-  onCookTimePress: () => void,
-  onStartPress: () => void,
-  onStopPress: () => void,
+  mode: MicrowaveMode
+  isValidTime: boolean
+  onNumPress: (num: number) => void
+  onCookTimePress: () => void
+  onStartPress: () => void
+  onPausePress: () => void
+  onStopPress: () => void
   onTimeAddPress: () => void
 }
 
-export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCookTimePress, onStartPress, onStopPress, onTimeAddPress }: MicrowaveButtonProps){
+export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCookTimePress, onStartPress, onPausePress, onStopPress, onTimeAddPress }: MicrowaveButtonProps){
   return (
     <>
       <Numpad onNumPress={onNumPress} disabled={mode !== 'input'}>
         <div className="col-span-3 grid grid-cols-subgrid">
+          <Button 
+            className="text-sm"
+            onClick={onCookTimePress}
+          >
+            Cook Time
+          </Button>
           <Button 
             className="col-start-2"
             onClick={() => onNumPress(0)}
@@ -33,12 +40,6 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
         </div>
       </Numpad>
       <div className="bg-zinc-800 grid grid-cols-3 rounded-sm">
-        <Button 
-          className="text-sm"
-          onClick={onCookTimePress}
-        >
-          Cook Time
-        </Button>
         <Button
           className="text-sm border-b-4 border-green-400/50 p-1"
           hoverClassName="enabled:hover:bg-green-300/20 enabled:active:bg-green-400/40"
@@ -47,6 +48,14 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           disabled={!isValidTime}
         >
           START
+        </Button>
+        <Button
+          className="text-sm border-b-4 border-yellow-400/50"
+          hoverClassName="enabled:hover:bg-yellow-300/20 enabled:active:bg-yellow-400/40"
+          onClick={onPausePress}
+          disabled={mode !== 'cook'}
+        >
+          PAUSE
         </Button>
         <Button
           className="text-sm border-b-4 border-red-400/50"
