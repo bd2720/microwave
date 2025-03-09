@@ -24,7 +24,7 @@ export default function Microwave(){
   const isValidTime = (seconds < 60) && (totalSeconds > 0);
 
   const { beginHum, endHum } = useSoundHum();
-  const playBeeper = useSoundTimer();
+  const { playBeeper, cancelBeeper } = useSoundTimer();
 
   function handleNumPress(num: number){
     if(mode !== 'input') return;
@@ -77,7 +77,10 @@ export default function Microwave(){
     <div className="w-[80em] h-[36em] max-w-[1280px] w-full bg-zinc-400 p-12 flex rounded-lg shadow-2xl">
       <MicrowaveDoor 
         isCooking={isCooking}
-        onHandlePress={handleCookEnd}
+        onHandlePress={() => {
+          cancelBeeper();
+          handleCookEnd();
+        }}
       />
       <div className="h-full w-2 bg-black" />
       <div className="w-60 h-full bg-zinc-900 rounded-r-lg flex flex-col gap-4 p-5 shrink-0">
@@ -100,7 +103,10 @@ export default function Microwave(){
           onCookTimePress={handleCookTimePress}
           onStartPress={handleStartPress}
           onPausePress={handlePausePress}
-          onStopPress={handleCookEnd}
+          onStopPress={() => {
+            cancelBeeper();
+            handleCookEnd();
+          }}
           onTimeAddPress={handleTimeAdd}
         />
       </div>
