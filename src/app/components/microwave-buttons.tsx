@@ -41,9 +41,9 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
       </Numpad>
       <div className="bg-zinc-800 grid grid-cols-3 rounded-sm">
         <Button
-          className="text-sm border-b-4 border-green-400/50 p-1"
+          className="text-sm border-b-4 border-green-400/50"
           hoverClassName="enabled:hover:bg-green-300/20 enabled:active:bg-green-400/40"
-          subtext="RESTART"
+          subtitle="RESTART"
           onClick={onStartPress}
           beepNote="G#5"
           disabled={!isValidTime}
@@ -51,18 +51,18 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           START
         </Button>
         <Button
-          className="text-sm border-b-4 border-yellow-400/50 p-1"
+          className="text-sm border-b-4 border-yellow-400/50"
           hoverClassName="enabled:hover:bg-yellow-300/20 enabled:active:bg-yellow-400/40"
-          subtext="RESUME"
+          subtitle="RESUME"
           onClick={onPausePress}
           disabled={mode !== 'cook'}
         >
           PAUSE
         </Button>
         <Button
-          className="text-sm border-b-4 border-red-400/50 p-1"
+          className="text-sm border-b-4 border-red-400/50"
           hoverClassName="enabled:hover:bg-red-300/20 enabled:active:bg-red-400/40"
-          subtext="CLEAR"
+          subtitle="CLEAR"
           onClick={onStopPress}
           beepNote="G#4"
         >

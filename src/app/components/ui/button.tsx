@@ -6,13 +6,13 @@ import * as Tone from 'tone';
 interface ButtonProps extends PropsWithChildren {
   className?: string
   hoverClassName?: string // override the button's default hover/active bg color changes
-  subtext?: string // text to appear under button content (within button)
+  subtitle?: string // text to appear under button content (within button)
   beepNote?: Tone.Unit.Frequency
   onClick?: () => void
   disabled?: boolean
 }
 
-export default function Button({ className, hoverClassName, subtext, beepNote, onClick, disabled = false, children } : ButtonProps){
+export default function Button({ className, hoverClassName, subtitle, beepNote, onClick, disabled = false, children } : ButtonProps){
   const beep = useSoundBeep();
 
   return (
@@ -20,7 +20,7 @@ export default function Button({ className, hoverClassName, subtext, beepNote, o
       className={clsx(
         "relative text-2xl text-zinc-100 h-16 rounded-sm",
         hoverClassName || "enabled:hover:bg-sky-500/20 enabled:active:bg-sky-500/40",
-        subtext && "flex flex-col justify-between",
+        subtitle && "flex flex-col items-center justify-center",
         className
       )}
       disabled={disabled}
@@ -30,9 +30,9 @@ export default function Button({ className, hoverClassName, subtext, beepNote, o
       }}
     >
       {children}
-      {subtext &&
-        <span className="text-xs text-zinc-400">
-          {subtext}
+      {subtitle && 
+        <span className="absolute bottom-0.5 text-xs text-zinc-400">
+          {subtitle}
         </span>
       }
     </button>

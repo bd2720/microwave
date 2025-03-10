@@ -46,7 +46,7 @@ export default function Microwave(){
     if(!isValidTime) return;
     setMode('cook');
     setSecondsLeft(totalSeconds);
-    beginHum(); // begin microwave hum
+    if(!isPaused) beginHum(); // begin microwave hum unless paused
   }
 
   function handlePausePress(){
