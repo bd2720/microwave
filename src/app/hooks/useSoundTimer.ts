@@ -48,6 +48,8 @@ export const useSoundTimer = () => {
   useEffect(() => {
     if(beeperRef.current){
       beeperRef.current.volume.value = gainLevel;
+    } else { // create beeper if it doesn't exist (in case volume is turned on while cooking)
+      beeperRef.current = createBeeper();
     }
   }, [gainLevel])
 
