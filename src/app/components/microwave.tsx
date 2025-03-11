@@ -6,6 +6,7 @@ import MicrowaveButtons from '@/app/components/microwave-buttons';
 import { useState } from 'react';
 import { useSoundHum } from '@/app/hooks/useSoundHum';
 import { useSoundTimer } from '@/app/hooks/useSoundTimer';
+import { Fragment } from 'react';
 
 export type MicrowaveMode = 'clock' | 'input' | 'cook';
 
@@ -74,7 +75,7 @@ export default function Microwave(){
   }
 
   return (
-    <div className="w-[80em] h-[36em] max-w-[1280px] w-full bg-zinc-400 p-12 flex rounded-lg shadow-2xl">
+    <div className="w-full h-[36em] max-w-[1280px] bg-zinc-400 p-12 flex rounded-lg shadow-2xl max-[448px]:px-4 max-[448px]:justify-center">
       <MicrowaveDoor 
         isCooking={isCooking}
         onHandlePress={() => {
@@ -82,8 +83,8 @@ export default function Microwave(){
           handleCookEnd();
         }}
       />
-      <div className="h-full w-2 bg-black" />
-      <div className="w-60 h-full bg-zinc-900 rounded-r-lg flex flex-col gap-4 p-5 shrink-0">
+      <div className="h-full w-2 bg-black max-[448px]:hidden" />
+      <div className="w-60 h-full bg-zinc-900 rounded-r-lg flex flex-col gap-4 p-5 shrink-0 max-[448px]:w-full max-[448px]:rounded-lg max-[448px]:">
         <MicrowaveTime 
           mode={mode} 
           timeInput={timeInput}

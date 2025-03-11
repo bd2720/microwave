@@ -17,7 +17,7 @@ export default function Header(){
         </Link>
       </div>
       <div>
-        <h1 className="dark:text-zinc-100 text-2xl md:text-4xl text-center font-semibold m-1">
+        <h1 className="dark:text-zinc-100 text-2xl md:text-4xl text-center font-semibold m-1 text-nowrap">
           Microwave Timer
         </h1>
         <p className="dark:text-zinc-300 text-sm md:text-lg text-center text-zinc-600 p-2">

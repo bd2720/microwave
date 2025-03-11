@@ -22,7 +22,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
             className="text-sm"
             onClick={onCookTimePress}
           >
-            Cook Time
+            Cook <div>Time</div>
           </Button>
           <Button 
             className="col-start-2"
@@ -35,7 +35,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
             className="text-sm col-start-3"
             onClick={onTimeAddPress}
           >
-            Add <span className="text-nowrap">30 Sec</span>
+            Add <div className="text-nowrap">30 Sec</div>
           </Button> 
         </div>
       </Numpad>
