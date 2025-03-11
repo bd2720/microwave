@@ -18,9 +18,10 @@ export default function Button({ className, hoverClassName, subtitle, beepNote, 
   return (
     <button 
       className={clsx(
-        "relative text-2xl text-zinc-100 h-16 rounded-sm",
+        "text-2xl h-16 rounded-sm",
         hoverClassName || "enabled:hover:bg-sky-500/20 enabled:active:bg-sky-500/40",
-        subtitle && "flex flex-col items-center justify-center",
+        subtitle && "flex flex-col items-center justify-around pt-1",
+        disabled ? "text-zinc-500" : "text-zinc-100",
         className
       )}
       disabled={disabled}
@@ -31,7 +32,7 @@ export default function Button({ className, hoverClassName, subtitle, beepNote, 
     >
       {children}
       {subtitle && 
-        <span className="absolute bottom-0.5 text-xs text-zinc-400">
+        <span className={clsx("text-xs", disabled ? "text-zinc-600" : "text-zinc-400")}>
           {subtitle}
         </span>
       }
