@@ -6,18 +6,14 @@ import MicrowaveButtons from '@/app/components/microwave-buttons';
 import { useState } from 'react';
 import { useSoundHum } from '@/app/hooks/useSoundHum';
 import { useSoundTimer } from '@/app/hooks/useSoundTimer';
-import { Fragment } from 'react';
 
-export type MicrowaveMode = 'clock' | 'input' | 'cook';
+export type MicrowaveMode = 'clock' | 'input' | 'cook' | 'pause';
 
 export default function Microwave(){
   const [mode, setMode] = useState<MicrowaveMode>('clock');
   const [timeInput, setTimeInput] = useState<string>('0000');
   const [secondsLeft, setSecondsLeft] = useState<number>(0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
-
-  const isCooking = (mode === 'cook');
-
+  
   // parse timeInput into seconds, minutes
   const seconds = parseInt(timeInput.slice(2));
   const minutes = parseInt(timeInput.slice(0, 2));
@@ -37,38 +33,40 @@ export default function Microwave(){
   function handleCookTimePress(){
     setMode('input'); // set input mode
     setTimeInput('0000'); // reset input
-    if(isCooking){
-      setIsPaused(false);
+    if(mode === 'cook'){
       endHum(); // stop hum if necessary
     }
   }
 
   function handleStartPress(){
     if(!isValidTime) return;
+    // retain pause state
     setMode('cook');
     setSecondsLeft(totalSeconds);
-    if(!isPaused) beginHum(); // begin microwave hum unless paused
+    if(mode !== 'pause') beginHum(); // begin microwave hum unless paused
   }
 
   function handlePausePress(){
-    if(!isCooking) return;
-    setIsPaused(paused => !paused);
-    // control hum depending on previous isPaused
-    isPaused ? beginHum() : endHum();
+    if(mode === 'cook'){
+      setMode('pause');
+      endHum();
+    } else if(mode === 'pause'){
+      setMode('cook');
+      beginHum();
+    }
   }
 
   function handleCookEnd(){
     setMode('clock');
-    setIsPaused(false);
     // do not reset timeInput here, so START may remember the previous timer
-    endHum();
+    if(mode === 'cook') endHum();
   }
 
   function handleTimeAdd(){
-    setMode('cook');
-    if(isCooking){
+    if(mode === 'cook' || mode === 'pause'){
       setSecondsLeft(s => s + 30);
     } else {
+      setMode('cook');
       setSecondsLeft(30);
       beginHum();
     }
@@ -77,7 +75,7 @@ export default function Microwave(){
   return (
     <div className="w-full h-[36em] max-w-[1280px] bg-zinc-400 p-12 flex rounded-lg shadow-2xl max-[448px]:px-4 max-[448px]:justify-center">
       <MicrowaveDoor 
-        isCooking={isCooking}
+        glow={mode === 'cook' || mode === 'pause'}
         onHandlePress={() => {
           cancelBeeper();
           handleCookEnd();
@@ -90,7 +88,6 @@ export default function Microwave(){
           timeInput={timeInput}
           isValidTime={isValidTime}
           secondsLeft={secondsLeft}
-          isPaused={isPaused}
           tickDown={() => setSecondsLeft(s => s - 1)}
           onTimerEnd={() => {
             playBeeper(); // play beeper when cooking completes

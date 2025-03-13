@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import { useSoundDoor } from '@/app/hooks/useSoundDoor';
 
 interface MicrowaveDoorProps {
-  isCooking: boolean,
+  glow: boolean,
   onHandlePress: () => void
 }
 
-export default function MicrowaveDoor({ isCooking, onHandlePress }: MicrowaveDoorProps){
+export default function MicrowaveDoor({ glow, onHandlePress }: MicrowaveDoorProps){
   const door = useSoundDoor();
   
   return (
@@ -18,7 +18,7 @@ export default function MicrowaveDoor({ isCooking, onHandlePress }: MicrowaveDoo
           onHandlePress();
         }}
       />
-      <div className={clsx('w-full h-full rounded-sm transition duration-200', (isCooking) ? 'bg-amber-200/40' : 'bg-black/40')} />
+      <div className={clsx('w-full h-full rounded-sm transition duration-200', (glow) ? 'bg-amber-200/40' : 'bg-black/40')} />
     </div>
   );
 }

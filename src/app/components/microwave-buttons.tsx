@@ -55,7 +55,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           hoverClassName="enabled:hover:bg-yellow-300/20 enabled:active:bg-yellow-400/40"
           subtitle="RESUME"
           onClick={onPausePress}
-          disabled={mode !== 'cook'}
+          disabled={mode !== 'cook' && mode !== 'pause'}
         >
           PAUSE
         </Button>

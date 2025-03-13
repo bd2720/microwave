@@ -8,7 +8,8 @@ import clsx from 'clsx';
 const modeDisplayMap = {
   "clock": "TIME NOW",
   "input": "ENTER TIME",
-  "cook": "COOKING"
+  "cook": "COOKING",
+  "pause": "PAUSED"
 }; 
 
 interface MicrowaveTimeProps {
@@ -16,12 +17,11 @@ interface MicrowaveTimeProps {
   timeInput: string
   isValidTime: boolean
   secondsLeft: number
-  isPaused: boolean
   tickDown: () => void
   onTimerEnd: () => void
 }
 
-export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLeft, isPaused, tickDown, onTimerEnd }: MicrowaveTimeProps){
+export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLeft, tickDown, onTimerEnd }: MicrowaveTimeProps){
   const showInputInvalid = (mode === 'input' && !isValidTime && timeInput !== '0000');
 
   return (
@@ -35,21 +35,19 @@ export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLef
             <Clock /> :
           (mode === 'input') ? 
             <InputDisplay timeInput={timeInput} /> :
-          (mode === 'cook') ? 
             <Timer 
               secondsLeft={secondsLeft}
-              isPaused={isPaused}
+              isPaused={mode === 'pause'}
               tickDown={tickDown}
               onTimerEnd={onTimerEnd}
-            /> :
-          <p className="text-red-500">ERROR</p>
+            />
         }
       </p>
-      <p className={clsx("absolute bottom-0 text-sm", (showInputInvalid) ? "text-red-500" : (isPaused) ? "text-yellow-500" : "text-sky-500")}>
+      <p className={clsx("absolute bottom-0 text-sm", (showInputInvalid) ? "text-red-500" : (mode === 'pause') ? "text-yellow-500" : "text-sky-500")}>
         {
           showInputInvalid ?
             "INVALID TIME" :
-          isPaused ?
+          (mode === 'pause') ?
             "PAUSED" :
           modeDisplayMap[mode]
         }
