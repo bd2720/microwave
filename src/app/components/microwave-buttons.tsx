@@ -1,4 +1,4 @@
-import { MicrowaveMode } from '@/app/components/microwave';
+import { type MicrowaveMode } from '@/app/page';
 import Button from '@/app/components/ui/button';
 import Numpad from '@/app/components/ui/numpad';
 

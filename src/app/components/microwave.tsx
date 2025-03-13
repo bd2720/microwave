@@ -3,24 +3,27 @@
 import MicrowaveDoor from '@/app/components/microwave-door';
 import MicrowaveTime from '@/app/components/microwave-time';
 import MicrowaveButtons from '@/app/components/microwave-buttons';
-import { useState } from 'react';
-import { useSoundHum } from '@/app/hooks/useSoundHum';
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import { useSoundTimer } from '@/app/hooks/useSoundTimer';
+import { type MicrowaveMode } from '@/app/page';
 
-export type MicrowaveMode = 'clock' | 'input' | 'cook' | 'pause';
+interface MicrowaveProps {
+  mode: MicrowaveMode
+  setMode: Dispatch<SetStateAction<MicrowaveMode>>
+  beginHum: () => void
+  endHum: () => void
+}
 
-export default function Microwave(){
-  const [mode, setMode] = useState<MicrowaveMode>('clock');
+export default function Microwave({ mode, setMode, beginHum, endHum }: MicrowaveProps){
   const [timeInput, setTimeInput] = useState<string>('0000');
   const [secondsLeft, setSecondsLeft] = useState<number>(0);
-  
+
   // parse timeInput into seconds, minutes
   const seconds = parseInt(timeInput.slice(2));
   const minutes = parseInt(timeInput.slice(0, 2));
   const totalSeconds = minutes * 60 + seconds;
   const isValidTime = (seconds < 60) && (totalSeconds > 0);
 
-  const { beginHum, endHum } = useSoundHum();
   const { playBeeper, cancelBeeper } = useSoundTimer();
 
   function handleNumPress(num: number){
@@ -43,7 +46,7 @@ export default function Microwave(){
     // retain pause state
     setMode('cook');
     setSecondsLeft(totalSeconds);
-    if(mode !== 'pause') beginHum(); // begin microwave hum unless paused
+    beginHum();
   }
 
   function handlePausePress(){

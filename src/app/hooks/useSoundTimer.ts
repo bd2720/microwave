@@ -25,9 +25,7 @@ export const useSoundTimer = () => {
 
   // function to play beeper
   const playBeeper = () => {
-    if(!beeperRef.current){
-      beeperRef.current = createBeeper();
-    }
+    beeperRef.current = createBeeper();
     const now = Tone.now();
     // beep numBeeps times
     for(let i = 0; i < numBeeps; i++){

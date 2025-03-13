@@ -7,7 +7,11 @@ import ButtonSetting from '@/app/components/button-setting';
 import ThemeSetting from '@/app/components/theme-setting';
 import SoundSetting from '@/app/components/sound-setting';
 
-export default function Settings(){
+interface SettingsProps {
+  togglePause: () => void
+}
+
+export default function Settings({ togglePause }: SettingsProps){
   const [isOpen, setIsOpen] = useState(false);
   const {humEnabled, setHumEnabled} = useSoundSettings();
 
@@ -15,7 +19,10 @@ export default function Settings(){
     <>
       <button 
         className="size-12 bg-zinc-300 rounded-lg shadow-inner ring-zinc-500 dark:ring-zinc-400 hover:ring-2 active:shadow-zinc-400 flex justify-center items-center group"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          togglePause(); // pause, if cooking
+        }}
       >
         <SettingsIcon 
           size="30" 

@@ -1,4 +1,4 @@
-import { type MicrowaveMode } from '@/app/components/microwave';
+import { type MicrowaveMode } from '@/app/page';
 import Clock from '@/app/components/time/clock';
 import InputDisplay from '@/app/components/time/input-display';
 import Timer from '@/app/components/time/timer';
@@ -47,8 +47,6 @@ export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLef
         {
           showInputInvalid ?
             "INVALID TIME" :
-          (mode === 'pause') ?
-            "PAUSED" :
           modeDisplayMap[mode]
         }
       </p>

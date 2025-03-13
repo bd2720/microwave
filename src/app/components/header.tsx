@@ -2,7 +2,11 @@ import Settings from '@/app/components/settings';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Header(){
+interface HeaderProps {
+  togglePause: () => void
+}
+
+export default function Header({ togglePause }: HeaderProps){
   return (
     <header className="w-full h-28 bg-zinc-400 dark:bg-zinc-700 shadow-xl flex justify-between items-center p-2">
       <div className="size-24 flex justify-center items-center">
@@ -36,7 +40,7 @@ export default function Header(){
         </p>
       </div>
       <div className="size-24 flex justify-center items-center">
-        <Settings />
+        <Settings togglePause={togglePause} />
       </div>
     </header>
   );
