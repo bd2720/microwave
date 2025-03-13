@@ -1,6 +1,6 @@
 import * as Tone from 'tone';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 const note = 'B5';
 const duration = '4n';
@@ -12,8 +12,8 @@ export const useSoundTimer = () => {
   // ref object to persist the Synth instance
   const beeperRef = useRef<Tone.Synth>(null);
 
-  // create beeper
-  const createBeeper = () => {
+  // create beeper, redefine when gain changes
+  const createBeeper = useCallback(() => {
     const beeper = new Tone.Synth({
       volume: gainLevel,
       envelope: {
@@ -21,7 +21,7 @@ export const useSoundTimer = () => {
       }
     }).toDestination();
     return beeper;
-  }
+  }, [gainLevel]);
 
   // function to play beeper
   const playBeeper = () => {
@@ -49,7 +49,7 @@ export const useSoundTimer = () => {
     } else { // create beeper if it doesn't exist (in case volume is turned on while cooking)
       beeperRef.current = createBeeper();
     }
-  }, [gainLevel])
+  }, [gainLevel, createBeeper]);
 
   return { playBeeper, cancelBeeper };
 }
