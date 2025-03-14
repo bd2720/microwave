@@ -1,3 +1,5 @@
+"use client";
+
 /* Custom hook that wraps useState with localstorage */
 import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, type Dispatch, type SetStateAction } from 'react';
 import { volumeToGain } from '@/app/utils/sound';
 

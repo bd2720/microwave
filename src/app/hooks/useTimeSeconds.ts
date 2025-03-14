@@ -1,3 +1,5 @@
+"use client";
+
 /* Returns the current date/time, updated every second */
 import { useState, useEffect } from 'react';
 

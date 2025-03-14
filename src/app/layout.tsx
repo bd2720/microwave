@@ -25,7 +25,7 @@ const keywords = [
   'modern ui', 'sleek ui', 'tailwind components', 'responsive design',
   'audio timer', 'beep timer', 'sound effects', 'tone.js sounds', 'custom alarm', 'microwave beep', 'microwave hum',
   'themed timer', 'microwave interface', 'retro ui', 'fun app',
-  'open source project', 'bd2720 microwave', 'bd2720 app'
+  'open source project', 'bd2720 microwave', 'bd2720 app',
 ];
 
 export const metadata: Metadata = {

@@ -1,3 +1,5 @@
+"use client";
+
 import * as Tone from 'tone';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 import { useEffect, useRef } from 'react';

@@ -1,3 +1,5 @@
+"use client";
+
 import Numpad from '@/app/components/ui/numpad';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 import Button from '@/app/components/ui/button';

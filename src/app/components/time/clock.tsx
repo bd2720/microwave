@@ -1,3 +1,5 @@
+"use client";
+
 import { useTimeSeconds } from '@/app/hooks/useTimeSeconds';
 
 export default function Clock(){
