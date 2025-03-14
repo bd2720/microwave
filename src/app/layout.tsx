@@ -10,17 +10,31 @@ const oxygenMono = Oxygen_Mono({
   weight: "400"
 });
 
-const siteName = "Microwave Timer";
-const extendedSiteName = `${siteName} | bd2720`;
-const description = "A sleek, interactive, microwave-themed timer app created with Next.js, React, Tailwind, TypeScript & Tone.js. Setting timers on tasks can significantly increase your efficiency. Use Microwave Timer to set time limits on your daily tasks and get more done. Be sure to visit the Settings menu to customize your theme and enable sound effects!";
+const title = "Microwave Timer | bd2720";
+const siteName = 'bd2720.github.io';
+const description = "Microwave-themed timer app created with Next.js. Set time limits on your daily tasks and get more done. Visit the Settings menu to customize theme and enable sound!";
 const url = "https://bd2720.github.io/microwave/";
-const thumbnailUrl = `${url}microwave_thumbnail.png`;
+const thumbnailUrl = `${url}microwave_thumbnail.jpg`;
+const author = {
+  name: "Brendan Deneen",
+  url: 'https://bd2720.github.io/',
+};
+const keywords = [
+  'custom timer', 'customizable timer', 'interactive timer', 'fun timer', 'productivity timer', 'kitchen timer', 'task timer', 'focus timer', 'time management app',
+  'frontend', 'web app', 'next.js', 'next', 'react', 'tailwind', 'tailwind css', 'typescript', 'tone.js',
+  'modern ui', 'sleek ui', 'tailwind components', 'responsive design',
+  'audio timer', 'beep timer', 'sound effects', 'tone.js sounds', 'custom alarm', 'microwave beep', 'microwave hum',
+  'themed timer', 'microwave interface', 'retro ui', 'fun app',
+  'open source project', 'bd2720 microwave', 'bd2720 app'
+];
 
 export const metadata: Metadata = {
-  title: extendedSiteName,
+  title: title,
   description: description,
+  authors: [author],
+  keywords: keywords,
   openGraph: {
-    title: extendedSiteName,
+    title: title,
     description: description,
     url: url,
     siteName: siteName,
@@ -36,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: extendedSiteName,
+    title: title,
     description: description,
     images: [thumbnailUrl],
   },
