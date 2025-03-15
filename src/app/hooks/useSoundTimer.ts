@@ -2,7 +2,7 @@
 
 import * as Tone from 'tone';
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 
 const note = 'B5';
 const duration = '4n';
@@ -14,22 +14,26 @@ export const useSoundTimer = () => {
   // ref object to persist the Synth instance
   const beeperRef = useRef<Tone.Synth>(null);
 
-  // create beeper, redefine when gain changes
-  const createBeeper = useCallback(() => {
-    const beeper = new Tone.Synth({
-      volume: gainLevel,
-      envelope: {
-        release: 0.1
-      }
-    }).toDestination();
-    return beeper;
+  // create beeper on mount, and whenever volume changes
+  useEffect(() => {
+    // create if not yet created
+    if(!beeperRef.current){
+      const beeper = new Tone.Synth({
+        envelope: {
+          release: 0.1
+        }
+      }).toDestination();
+      beeperRef.current = beeper;
+    }
+    // set volume
+    beeperRef.current.volume.value = gainLevel;
   }, [gainLevel]);
 
   // function to play beeper
   const playBeeper = () => {
-    beeperRef.current = createBeeper();
-    const now = Tone.now();
+    if(!beeperRef.current) return;
     // beep numBeeps times
+    const now = Tone.now();
     for(let i = 0; i < numBeeps; i++){
       beeperRef.current.triggerAttackRelease(note, duration, now + i);
     }
@@ -37,21 +41,17 @@ export const useSoundTimer = () => {
 
   // function to interrupt beeper (optional)
   const cancelBeeper = () => {
-    if(beeperRef.current){
-      // create a new beeper to cancel
-      beeperRef.current.disconnect();
-      beeperRef.current = createBeeper();
-    }
+    if(!beeperRef.current) return;
+    // create a new beeper to cancel triggered beeps
+    beeperRef.current.disconnect();
+    const beeper = new Tone.Synth({
+      volume: gainLevel,
+      envelope: {
+        release: 0.1
+      }
+    }).toDestination();
+    beeperRef.current = beeper;
   }
-
-  // update Synth's volume whenever it changes
-  useEffect(() => {
-    if(beeperRef.current){
-      beeperRef.current.volume.value = gainLevel;
-    } else { // create beeper if it doesn't exist (in case volume is turned on while cooking)
-      beeperRef.current = createBeeper();
-    }
-  }, [gainLevel, createBeeper]);
 
   return { playBeeper, cancelBeeper };
 }
