@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface HeaderProps {
-  togglePause: () => void
+  togglePause?: () => void
 }
 
 export default function Header({ togglePause }: HeaderProps){

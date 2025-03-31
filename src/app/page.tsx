@@ -13,14 +13,7 @@ export default function Home() {
   
   return (
     <div className="w-screen min-h-screen">
-      <Header 
-        togglePause={() => {
-          // pause if cooking
-          if(mode !== 'cook') return;
-          setMode('pause');
-          endHum();
-        }}
-      />
+      <Header />
       <div className=" w-full h-full flex justify-center items-center pt-16 px-6">
         <Microwave 
           mode={mode} 
