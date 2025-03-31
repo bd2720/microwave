@@ -22,6 +22,7 @@ export default function ThemeSetting(){
       buttonText="Change Theme"
       displayText={`${theme?.toUpperCase()} MODE ON`}
       onClick={handleThemeChange}
+      description="Toggle the color scheme between system default, light, and dark"
     />
   );
 }

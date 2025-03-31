@@ -25,10 +25,15 @@ export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLef
   const showInputInvalid = (mode === 'input' && !isValidTime && timeInput !== '0000');
 
   return (
-    <div className="relative bg-zinc-800 p-2 overflow-hidden h-16 flex justify-center items-center rounded-sm">
+    <div 
+      className="relative bg-zinc-800 p-2 overflow-hidden h-16 flex justify-center items-center rounded-sm"
+      role="status"
+      aria-label="Microwave Display"
+    >
       <p 
         className="text-lg text-sky-400 text-center text-nowrap"
         suppressHydrationWarning={mode === 'clock'}
+        aria-label="Display Text"
       >
         {
           (mode === 'clock') ? 
@@ -43,7 +48,10 @@ export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLef
             />
         }
       </p>
-      <p className={clsx("absolute bottom-0 text-sm", (showInputInvalid) ? "text-red-500" : (mode === 'pause') ? "text-yellow-500" : "text-sky-500")}>
+      <p 
+        className={clsx("absolute bottom-0 text-sm", (showInputInvalid) ? "text-red-500" : (mode === 'pause') ? "text-yellow-500" : "text-sky-500")}
+        aria-label="Display Subtext"
+      >
         {
           showInputInvalid ?
             "INVALID TIME" :

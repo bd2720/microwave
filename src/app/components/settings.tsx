@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 import { Settings as SettingsIcon, X } from 'lucide-react';
-import ButtonSetting from '@/app/components/button-setting';
 import ThemeSetting from '@/app/components/theme-setting';
+import HumSetting from '@/app/components/hum-setting';
 import SoundSetting from '@/app/components/sound-setting';
 
 interface SettingsProps {
@@ -13,7 +12,6 @@ interface SettingsProps {
 
 export default function Settings({ togglePause }: SettingsProps){
   const [isOpen, setIsOpen] = useState(false);
-  const {humEnabled, setHumEnabled} = useSoundSettings();
 
   return (
     <>
@@ -24,6 +22,7 @@ export default function Settings({ togglePause }: SettingsProps){
           togglePause?.(); // pause, if cooking
         }}
         aria-label="Settings"
+        title="Settings"
       >
         <SettingsIcon 
           size="30" 
@@ -35,6 +34,7 @@ export default function Settings({ togglePause }: SettingsProps){
         <div 
           className="absolute top-0 left-0 bottom-0 right-0 bg-zinc-800/50 flex justify-center items-center z-20"
           role="menu"
+          aria-label="Settings Menu"
         >
           <div className="relative w-96 bg-zinc-900 rounded-lg shadow-lg border-4 border-zinc-400 p-1">
             <h2 className="text-2xl font-semibold text-sky-500 bg-zinc-800 rounded-sm text-center">
@@ -51,11 +51,7 @@ export default function Settings({ togglePause }: SettingsProps){
               {/* THEME SETTING */}
               <ThemeSetting />
               { /* SOUND SETTINGS */}
-              <ButtonSetting
-                buttonText="Toggle Hum"
-                displayText={`HUM ${humEnabled ? 'ON' : 'OFF'}`}
-                onClick={() => setHumEnabled(!humEnabled)}
-              />
+              <HumSetting />
               <SoundSetting />
             </div>
           </div>

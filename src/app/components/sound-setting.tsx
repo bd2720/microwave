@@ -15,7 +15,11 @@ export default function SoundSetting(){
   }
   return (
     <div className="flex flex-col items-center gap-4 pt-4">
-      <div className="w-52 relative bg-zinc-800 p-2 overflow-hidden h-16 flex justify-center items-center rounded-sm">
+      <div 
+        className="w-52 relative bg-zinc-800 p-2 overflow-hidden h-16 flex justify-center items-center rounded-sm"
+        role="status"
+        aria-label={`VOLUME: ${volumeDisplayStr} / 99`}
+      >
         <p className="text-lg text-sky-400 text-center text-nowrap">
           VOLUME: {volumeDisplayStr} / 99
         </p>

@@ -10,9 +10,11 @@ interface ButtonProps extends PropsWithChildren {
   beepNote?: Tone.Unit.Frequency
   onClick?: () => void
   disabled?: boolean
+  ariaLabel?: string // for aria-label
+  title?: string // hover text
 }
 
-export default function Button({ className, hoverClassName, subtitle, beepNote, onClick, disabled = false, children } : ButtonProps){
+export default function Button({ className, hoverClassName, subtitle, beepNote, onClick, disabled = false, ariaLabel, title, children } : ButtonProps){
   const beep = useSoundBeep();
 
   return (
@@ -29,6 +31,8 @@ export default function Button({ className, hoverClassName, subtitle, beepNote, 
         beep(beepNote);
         if(onClick) onClick();
       }}
+      aria-label={ariaLabel}
+      title={title}
     >
       {children}
       {subtitle && 

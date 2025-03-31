@@ -19,6 +19,8 @@ export default function MicrowaveDoor({ glow, onHandlePress }: MicrowaveDoorProp
           door(); // play door sound
           onHandlePress();
         }}
+        aria-label="Door Handle"
+        title="Open the microwave door (stops cooking)"
       />
       <div className={clsx('w-full h-full rounded-sm transition duration-200', (glow) ? 'bg-amber-200/40' : 'bg-black/40')} />
     </div>

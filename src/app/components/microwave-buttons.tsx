@@ -21,6 +21,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           <Button 
             className="text-sm"
             onClick={onCookTimePress}
+            title="Begin entering a cooking time"
           >
             Cook <div>Time</div>
           </Button>
@@ -34,6 +35,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           <Button 
             className="text-sm col-start-3"
             onClick={onTimeAddPress}
+            title="Add 30 seconds to the current cooking time"
           >
             Add <div className="text-nowrap">30 Sec</div>
           </Button> 
@@ -47,6 +49,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           onClick={onStartPress}
           beepNote="G#5"
           disabled={!isValidTime}
+          title="Start cooking, or restart the last timer"
         >
           START
         </Button>
@@ -56,6 +59,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           subtitle="RESUME"
           onClick={onPausePress}
           disabled={mode !== 'cook' && mode !== 'pause'}
+          title="Pause or unpause the current timer"
         >
           PAUSE
         </Button>
@@ -65,6 +69,7 @@ export default function MicrowaveButtons({ mode, isValidTime, onNumPress, onCook
           subtitle="CLEAR"
           onClick={onStopPress}
           beepNote="G#4"
+          title="Stop cooking, or clear the cook time input"
         >
           STOP
         </Button>
