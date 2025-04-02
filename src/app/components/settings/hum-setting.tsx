@@ -1,4 +1,4 @@
-import ButtonSetting from "@/app/components/button-setting";
+import ButtonSetting from "@/app/components/settings/button-setting";
 import { useSoundSettings } from '@/app/hooks/useSoundSettings';
 
 export default function HumSetting(){

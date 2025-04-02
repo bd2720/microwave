@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { Settings as SettingsIcon, X } from 'lucide-react';
-import ThemeSetting from '@/app/components/theme-setting';
-import HumSetting from '@/app/components/hum-setting';
-import SoundSetting from '@/app/components/sound-setting';
+import ThemeSetting from '@/app/components/settings/theme-setting';
+import HumSetting from '@/app/components/settings/hum-setting';
+import SoundSetting from '@/app/components/settings/sound-setting';
 
 interface SettingsProps {
   togglePause?: () => void

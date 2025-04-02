@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from 'next-themes';
-import ButtonSetting from '@/app/components/button-setting';
+import ButtonSetting from '@/app/components/settings/button-setting';
 
 // available themes
 const themes = ['system', 'light', 'dark'];

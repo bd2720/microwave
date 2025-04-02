@@ -1,6 +1,6 @@
 "use client";
 
-import Header from '@/app/components/header';
+import Header from '@/app/components/ui/header';
 import Microwave from '@/app/components/microwave';
 import { useState } from 'react';
 import { useSoundHum } from '@/app/hooks/useSoundHum';

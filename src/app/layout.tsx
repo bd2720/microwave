@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Oxygen_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
-import SoundSettingsProvider from "@/app/components/sound-settings-provider";
+import SoundSettingsProvider from "@/app/components/settings/sound-settings-provider";
 import "./globals.css";
 
 const oxygenMono = Oxygen_Mono({

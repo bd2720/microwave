@@ -1,4 +1,4 @@
-import Settings from '@/app/components/settings';
+import Settings from '@/app/components/settings/settings';
 import Image from 'next/image';
 import Link from 'next/link';
 
