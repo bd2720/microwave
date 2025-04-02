@@ -22,7 +22,8 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
   const seconds = parseInt(timeInput.slice(2));
   const minutes = parseInt(timeInput.slice(0, 2));
   const totalSeconds = minutes * 60 + seconds;
-  const isValidTime = (seconds < 60) && (totalSeconds > 0);
+  // permit seconds above 59
+  const isValidTime = (minutes === 0 || seconds < 60) && (totalSeconds > 0);
 
   const { playBeeper, cancelBeeper } = useSoundTimer();
 
