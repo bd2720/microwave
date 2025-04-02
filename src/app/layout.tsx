@@ -54,6 +54,9 @@ export const metadata: Metadata = {
     description: description,
     images: [thumbnailUrl],
   },
+  verification: {
+    google: "9X9ajfDtPL6bmCt9V2k4bjm8mdweOqW3WZGiLUAlfeY",
+  },
 };
 
 export default function RootLayout({

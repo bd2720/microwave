@@ -44,7 +44,6 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
 
   function handleStartPress(){
     if(!isValidTime) return;
-    // retain pause state
     setMode('cook');
     setSecondsLeft(totalSeconds);
     beginHum();
