@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     images: [thumbnailUrl],
   },
   verification: {
-    google: "9X9ajfDtPL6bmCt9V2k4bjm8mdweOqW3WZGiLUAlfeY",
+    google: "7MbPVStntITfW_6wvZsgdg86JiCzK_Zae80wADh-b6U",
   },
 };
 
