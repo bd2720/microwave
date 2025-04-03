@@ -14,6 +14,7 @@ const title = "Microwave Timer | bd2720";
 const siteName = 'bd2720.github.io';
 const description = "Microwave-themed timer app created with Next.js. Set time limits on your daily tasks and get more done. Visit the Settings menu to customize theme and enable sound!";
 const url = "https://bd2720.github.io/microwave/";
+const iconUrl = `${url}favicon.ico`;
 const thumbnailUrl = `${url}microwave_thumbnail.jpg`;
 const author = {
   name: "Brendan Deneen",
@@ -31,6 +32,15 @@ const keywords = [
 export const metadata: Metadata = {
   title: title,
   description: description,
+  icons: {
+    icon: {
+      rel: "icon",
+      url: iconUrl,
+      sizes: "96x96",
+      type: "image/x-icon"
+    },
+    apple: iconUrl,
+  },
   authors: [author],
   keywords: keywords,
   openGraph: {
@@ -43,7 +53,7 @@ export const metadata: Metadata = {
         url: thumbnailUrl,
         width: 1200,
         height: 630,
-        alt: "Microwave"
+        alt: "Microwave",
       },
     ],
     type: "website",
