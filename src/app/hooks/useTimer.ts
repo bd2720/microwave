@@ -30,8 +30,7 @@ export const useTimer = (isTicking: boolean, isPaused: boolean, setMillisecondsL
     }
 
     if(!isTicking){
-      // allow pause to preserve timer
-      if(!isPaused) onTimerEndRef.current();
+      onTimerEndRef.current();
     } else if(!isPaused) {
       if(prevPausedRef.current !== null){
         // (coming back from a pause) calculate remaining second

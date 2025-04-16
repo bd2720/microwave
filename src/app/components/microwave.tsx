@@ -3,9 +3,12 @@
 import MicrowaveDoor from '@/app/components/microwave-door';
 import MicrowaveTime from '@/app/components/microwave-time';
 import MicrowaveButtons from '@/app/components/microwave-buttons';
-import { useState, type Dispatch, type SetStateAction } from 'react';
+import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 import { useSoundTimer } from '@/app/hooks/useSoundTimer';
 import { type MicrowaveMode } from '@/app/page';
+import { formatTime } from '@/app/utils/time';
+
+const pageTitle = "Microwave Timer | bd2720"; // can't import from metadata
 
 interface MicrowaveProps {
   mode: MicrowaveMode
@@ -26,6 +29,11 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
   const isValidTime = (minutes === 0 || seconds < 60) && (totalSeconds > 0);
 
   const { playBeeper, cancelBeeper } = useSoundTimer();
+
+  // update tab title with time left
+  useEffect(() => {
+    document.title = (mode === 'cook' || mode === 'pause') ? `(${formatTime(Math.ceil(millisecondsLeft / 1000))}) ${pageTitle}` : pageTitle;
+  }, [mode, millisecondsLeft]);
 
   function handleNumPress(num: number){
     if(mode !== 'input') return;
@@ -67,7 +75,7 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
 
   function handleTimeAdd(){
     if(mode === 'cook' || mode === 'pause'){
-      setMillisecondsLeft(s => s + 30000);
+      setMillisecondsLeft(ms => ms + 30000);
     } else {
       setMode('cook');
       setMillisecondsLeft(30000);
@@ -93,6 +101,7 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
           millisecondsLeft={millisecondsLeft}
           setMillisecondsLeft={setMillisecondsLeft}
           onTimerEnd={() => {
+            cancelBeeper(); // cancel beeper if playing
             playBeeper(); // play beeper when cooking completes
             handleCookEnd();
           }}
