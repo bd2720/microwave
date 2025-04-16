@@ -27,6 +27,7 @@ Click the `Gear` button at the top right to access the **Settings** menu. You ca
 ## Additional Interactions
 - Hovering over most buttons will reveal a detailed description
 - Pressing `START` while not inputting a time will restart the previous timer
+- While cooking, the page's title will reflect the time remaining
 - While cooking is paused, pressing `Add 30 Sec` can add multiples of 30 seconds to the current timer without resuming cooking
 - After cooking completes, pressing `STOP` or `Door Handle` will interrupt the timer sound
 - All values set in **Settings** will persist across site visits
