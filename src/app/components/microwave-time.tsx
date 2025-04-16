@@ -3,6 +3,7 @@ import Clock from '@/app/components/time/clock';
 import InputDisplay from '@/app/components/time/input-display';
 import Timer from '@/app/components/time/timer';
 import clsx from 'clsx';
+import { Dispatch, SetStateAction } from 'react';
 
 // detailed text to display for mode
 const modeDisplayMap = {
@@ -16,12 +17,12 @@ interface MicrowaveTimeProps {
   mode: MicrowaveMode
   timeInput: string
   isValidTime: boolean
-  secondsLeft: number
-  tickDown: () => void
+  millisecondsLeft: number
+  setMillisecondsLeft: Dispatch<SetStateAction<number>>
   onTimerEnd: () => void
 }
 
-export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLeft, tickDown, onTimerEnd }: MicrowaveTimeProps){
+export default function MicrowaveTime({ mode, timeInput, isValidTime, millisecondsLeft, setMillisecondsLeft, onTimerEnd }: MicrowaveTimeProps){
   const showInputInvalid = (mode === 'input' && !isValidTime && timeInput !== '0000');
 
   return (
@@ -41,9 +42,9 @@ export default function MicrowaveTime({ mode, timeInput, isValidTime, secondsLef
           (mode === 'input') ? 
             <InputDisplay timeInput={timeInput} /> :
             <Timer 
-              secondsLeft={secondsLeft}
+              millisecondsLeft={millisecondsLeft}
               isPaused={mode === 'pause'}
-              tickDown={tickDown}
+              setMillisecondsLeft={setMillisecondsLeft}
               onTimerEnd={onTimerEnd}
             />
         }

@@ -16,7 +16,7 @@ interface MicrowaveProps {
 
 export default function Microwave({ mode, setMode, beginHum, endHum }: MicrowaveProps){
   const [timeInput, setTimeInput] = useState<string>('0000');
-  const [secondsLeft, setSecondsLeft] = useState<number>(0);
+  const [millisecondsLeft, setMillisecondsLeft] = useState<number>(0);
 
   // parse timeInput into seconds, minutes
   const seconds = parseInt(timeInput.slice(2));
@@ -45,7 +45,7 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
   function handleStartPress(){
     if(!isValidTime) return;
     setMode('cook');
-    setSecondsLeft(totalSeconds);
+    setMillisecondsLeft(totalSeconds * 1000);
     beginHum();
   }
 
@@ -67,10 +67,10 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
 
   function handleTimeAdd(){
     if(mode === 'cook' || mode === 'pause'){
-      setSecondsLeft(s => s + 30);
+      setMillisecondsLeft(s => s + 30000);
     } else {
       setMode('cook');
-      setSecondsLeft(30);
+      setMillisecondsLeft(30000);
       beginHum();
     }
   }
@@ -90,8 +90,8 @@ export default function Microwave({ mode, setMode, beginHum, endHum }: Microwave
           mode={mode} 
           timeInput={timeInput}
           isValidTime={isValidTime}
-          secondsLeft={secondsLeft}
-          tickDown={() => setSecondsLeft(s => s - 1)}
+          millisecondsLeft={millisecondsLeft}
+          setMillisecondsLeft={setMillisecondsLeft}
           onTimerEnd={() => {
             playBeeper(); // play beeper when cooking completes
             handleCookEnd();
